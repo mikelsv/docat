@@ -1,0 +1,54 @@
+Docat - wiki generator
+
+== How to use it ==
+
+=== Configure ===
+Create configure file: docat.conf. You may set next options:
+* Src path - source path.
+* Dst path - output path.
+* Ext .txt - set extension of you source files. By default ".txt".
+* Index name - start with this name. You can set some lines of Index.
+* Index index - start with index + Ext file = index.txt.
+* NoCrLf off - don't delete CR and LF sumbols. By default "on".
+* NoExist on - enable no exist <nowiki>[[keys]]</nowiki>. Else print error end exit.
+* NoSkip off - skip not modified files. Set On for rewrite all output files.
+
+* HtmlTitle htmlt.html - Add html code to title for all documents.
+* HtmlBegin htmlb.html - Add html code to begin for all documents.
+* HtmlEnd   htmle.html - Add html code to end for all documents.
+
+== Run ==
+Run: "docat" in folder with docat.conf or "docat path_to_folder_with_docat.conf". Wait result.
+
+== Source style ==
+First block before 2 * [[wikipedia:newline]] in new file - title. It show as alt text in the link to this file.
+
+== H2 ==
+There is == h2 ==.
+
+=== H3 ===
+H3 is here === h3 ===.
+
+==== H4 ====
+H4 for ==== you ====
+
+===== H5 =====
+And finally ===== H5 =====
+
+=== Lists ===
+* This is "* This is"
+
+=== Links ===
+You can write link as [[index]] - <nowiki>[[link]]</nowiki>. Set description [[index|Index page]] - <nowiki>[[index|Index page]]</nowiki>
+You can also add link to [[wikipedia:Wiki]] <nowiki>[[wikipedia:Wiki]]</nowiki>.
+Or any other link [[http://google.com|Google]] <nowiki>[[http://google.com|Google]]</nowiki>
+
+=== Code ===
+Add you code as <nowiki>&lt;code>Code this&lt;/code></nowiki>
+<code>
+int main(){
+	printf("Hello World!");
+	return 0;
+}
+</code>
+

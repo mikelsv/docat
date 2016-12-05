@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Docat - wiki generator</title>
+<meta name='Docat Wiki Generator' ver='0.0.0.1' warning='Do Not Write To This File, All Data Well Be Lost!' md5='eeef39a4dc9cb08cd26ed19b58122882' data='05.12.16 22:02:25' />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css.css" />
+</head>
+<body>
+<div class="splash">
+<div class="site">
+<div class="wrap">
+<header>
+<div class="header">
+<div class="header_top cfix">
+<a href="http://github.com/mikelsv/docat" class="logo">docat<span> MikelSV</span></a>
+
+</div>
+
+
+
+<nav class="menuTop cfix">
+<a href="http://centerix.ru/" class="">centerix.ru</a><span></span>
+<a href="index.html" class="active">Docat</a><span></span>
+<a href="http://github.com/mikelsv" class="">Git Hub</a>
+</nav>
+
+
+</div>
+</header>
+
+<section class="statistic">
+<div class="statistic cfix" align="left">
+
+
+<h1>Docat - wiki generator</h1><hr>
+<table border=0 cellpadding=0 cellspacing=3><tr><td align=center><h3>Contents:</h3></td></tr><tr><td><a href='#How_to_use_it'>1 How to use it</a></td></tr><tr><td><a href='#Configure'>1.1 Configure</a></td></tr><tr><td><a href='#Run'>2 Run</a></td></tr><tr><td><a href='#Source_style'>3 Source style</a></td></tr><tr><td><a href='#H2'>4 H2</a></td></tr><tr><td><a href='#H3'>4.1 H3</a></td></tr><tr><td><a href='#H4'>4.1.1 H4</a></td></tr><tr><td><a href='#H5'>4.1.1.1 H5</a></td></tr><tr><td><a href='#Lists'>4.2 Lists</a></td></tr><tr><td><a href='#Links'>4.3 Links</a></td></tr><tr><td><a href='#Code'>4.4 Code</a></td></tr></table>
+<h2><span id='How_to_use_it'>How to use it</span></h2><hr>
+<br><h3><span id='Configure'>Configure</span></h3>Create configure file: docat.conf. You may set next options:
+<br>* Src path - source path.
+<br>* Dst path - output path.
+<br>* Ext .txt - set extension of you source files. By default ".txt".
+<br>* Index name - start with this name. You can set some lines of Index.
+<br>* Index index - start with index + Ext file = index.txt.
+<br>* NoCrLf off - don't delete CR and LF sumbols. By default "on".
+<br>* NoExist on - enable no exist [[keys]]. Else print error end exit.
+<br>* NoSkip off - skip not modified files. Set On for rewrite all output files.
+<br>
+<br>* HtmlTitle htmlt.html - Add html code to title for all documents.
+<br>* HtmlBegin htmlb.html - Add html code to begin for all documents.
+<br>* HtmlEnd   htmle.html - Add html code to end for all documents.
+<br>
+<br><h2><span id='Run'>Run</span></h2><hr>Run: "docat" in folder with docat.conf or "docat path_to_folder_with_docat.conf". Wait result.
+<br>
+<br><h2><span id='Source_style'>Source style</span></h2><hr>First block before 2 * <a href='https://en.wikipedia.org/wiki/newline'>newline</a> in new file - title. It show as alt text in the link to this file.
+<br>
+<br><h2><span id='H2'>H2</span></h2><hr>There is == h2 ==.
+<br>
+<br><h3><span id='H3'>H3</span></h3>H3 is here === h3 ===.
+<br>
+<br><h4><span id='H4'>H4</span></h4>H4 for ==== you ====
+<br>
+<br><h5><span id='H5'>H5</span></h5>And finally ===== H5 =====
+<br>
+<br><h3><span id='Lists'>Lists</span></h3>* This is "* This is"
+<br>
+<br><h3><span id='Links'>Links</span></h3>You can write link as <a href='index.html' title='Docat - index page'>index</a> - [[link]]. Set description <a href='index.html' title='Docat - index page'>Index page</a> - [[index|Index page]]
+<br>You can also add link to <a href='https://en.wikipedia.org/wiki/Wiki'>Wiki</a> [[wikipedia:Wiki]].
+<br>Or any other link <a href='http://google.com'>Google</a> [[http://google.com|Google]]
+<br>
+<br><h3><span id='Code'>Code</span></h3>Add you code as &lt;code>Code this&lt;/code>
+<br><pre>
+int main(){
+	printf("Hello World!");
+	return 0;
+}
+</pre>
+<br>
+<br></div>
+</section>
+
+
+</div>
+
+
+<footer>
+
+ <div class="footer_menu">
+<nav class="menuTop cfix">
+<a href="http://centerix.ru/" class="">centerix.ru</a><span></span>
+<a href="index.html" class="active">Docat</a><span></span>
+<a href="http://github.com/mikelsv" class="">Git Hub</a>
+</nav>
+ </div>
+
+ <div class="footer_bottom cfix">
+ <div class="footer_bottom_copyright">Copyright c 2016 docat mikelsv</div>
+ <div class="footer_bottom_ssl">
+ </div>
+ </div>
+
+ </footer>
+</div>
+</div></body>
+</html>
