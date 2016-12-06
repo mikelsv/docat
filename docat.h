@@ -129,13 +129,13 @@ TString DocatContentId(unsigned char *ln, unsigned char *to){
 //// Options //
 
 // Source & destination dir, extension
-VString scr, dst, ext;
+VString src, dst, ext;
 
 // Html title, begin, end
 MString html_title, html_begin, html_end;
 
-// Options. No CrLf, No Exists, No Skip.
-int opt_crlf, opt_noex, opt_noskip;
+// Options. No CrLf, No Exists, No Skip, Make Directories.
+int opt_crlf, opt_noex, opt_noskip, opt_makedir;
 
 class DocatOptions{
 public:
@@ -144,7 +144,7 @@ public:
 
 	int Load(){
 		// Source & destination dir
-		scr = config.GetOption("Src");
+		src = config.GetOption("Src");
 		dst = config.GetOption("Dst");
 		ext = config.GetOption("Ext");
 
@@ -159,11 +159,12 @@ public:
 		opt_crlf = config.GetOption("NoCrLf").compareu("Off");
 		opt_noex = config.GetOption("NoExist").compareu("On");
 		opt_noskip = config.GetOption("NoSkip").compareu("On");
+		opt_makedir = config.GetOption("MakeDir").compareu("On");
 
 		//int linecount = 0;
 
 		if(!ext)
-			ext = ".txt";		
+			ext = ".txt";
 
 		return 1;
 	}
@@ -171,7 +172,10 @@ public:
 	int LoadHtml(VString name, MString &data){
 		SString path;
 
-		path.Add(scr, "/", config.GetOption(name));
+		if(!config.GetOption(name))
+			return -1;
+
+		path.Add(src, "/", config.GetOption(name));
 
 		if(!IsFile(path)){
 			print(LString() + "Error! " + name + " not found in: " + path + "\r\n");
@@ -258,7 +262,7 @@ int DoCatIndex(VString name){
 	unsigned int clevel[5] = {0, 0, 0, 0, 0};
 
 	// Load source
-	path.Add(scr, "/", name, ext);
+	path.Add(src, "/", name, ext);
 	
 	if(!IsFile(path)){
 		if(opt_noex){
@@ -506,6 +510,8 @@ int DoCatIndex(VString name){
 				res + VString(lln, ln - lln);
 			} else if(tag == "code" || tag == "pre"){
 				res + "<pre>" + DoCatCode(lln, ln) + "</pre>";
+			} else if(tag == "text"){
+				res + DoCatCode(lln, ln);
 			} else{
 				res + "<" + tag + ">" + VString(lln, ln - lln) + "</" + tag + ">";
 			}
@@ -586,10 +592,73 @@ int DoCatIndex(VString name){
 	return 1;
 }
 
+int DoCatMakeDir(VString path){
+	unsigned char *ln = path.data + dst.size() + 1, *to = path.endu(), *p = to;
+
+	return MkDir(VString(path.data, p - path.data));
+
+
+	while(p >= ln){
+		if(p == to || *p =='/' || *p == '\\')
+			if(MkDir(VString(path.data, p - path.data)))
+				break;
+		p --;
+	}
+
+	while(p <= to){
+		if(p == to || *p =='/' || *p == '\\')
+			if(!MkDir(VString(path.data, p - path.data)))
+				return 0;
+		p ++;
+	}
+
+	return 1;
+}
+
+int DoCatCopy(VString line){
+	VString from, to;
+	SString path;
+
+	from = PartLineST(line, to);
+
+	print("Copy file. From: ", src, "/", from, ", to: ", dst, "/", to, ".\r\n");
+
+	if(!from || !to){
+		print("Error! Copy ", line, ". Bad parameters.\r\n");
+		return 0;
+	}
+
+	// Load
+	path.Add(src, "/", from);
+
+	if(!IsFile(path)){
+		print("Error! File ", path, " not found.\r\n");
+		return 0;
+	}
+
+	MString data = LoadFile(path);
+
+	// Save
+	path.Add(dst, "/", to);
+
+	if(!SaveFile(path, data)){
+		if(opt_makedir){
+			ILink ilink(path);
+			DoCatMakeDir(ilink.GetProtoDomainPath());
+		}
+
+		if(!SaveFile(path, data)){
+			print("Error! Save file ", path, " error.\r\n");
+			return 0;
+		}
+	}
+
+	return 1;
+}
 
 int DoCat(){
 	if(!IsFile("docat.conf") || !config.LoadFile("docat.conf")){
-		print("Error! File docat.conf not found in this path.");
+		print("Error! File docat.conf not found in this path.\r\n");
 		return 0;
 	}
 
@@ -603,6 +672,16 @@ int DoCat(){
 			if(!DoCatIndex(opt->val))
 				return 0;			
 	}
+
+	// Copy
+	opt = 0;
+
+	while(opt = config.FindOption("copy", opt)){
+		if(opt->val)
+			if(!DoCatCopy(opt->val))
+				return 0;			
+	}
+
 
 	print("DoCat OK.\r\n");
 

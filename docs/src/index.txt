@@ -5,9 +5,10 @@ Docat (doc at *this) - wiki generator. From plain text to html pages.
 
 == How it work ==
 Write plain text with wiki style. Run [[docat]]. Get html!
+See [[docat]] help.
 
 == License ==
-[[http://choosealicense.com/licenses/mit/|MIT License ]].
+[[http://choosealicense.com/licenses/mit/|MIT License]].
 
 <pre>
 MIT License

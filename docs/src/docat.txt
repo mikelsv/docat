@@ -17,6 +17,9 @@ Create configure file: docat.conf. You may set next options:
 * HtmlBegin htmlb.html - Add html code to begin for all documents.
 * HtmlEnd   htmle.html - Add html code to end for all documents.
 
+* MakeDir on - Enable make directories on copy.
+* Copy scr_file dst_file - Copy scrpath_file to dstpath_file. Multiline.
+
 == Run ==
 Run: "docat" in folder with docat.conf or "docat path_to_folder_with_docat.conf". Wait result.
 
@@ -39,12 +42,12 @@ And finally ===== H5 =====
 * This is "* This is"
 
 === Links ===
-You can write link as [[index]] - <nowiki>[[link]]</nowiki>. Set description [[index|Index page]] - <nowiki>[[index|Index page]]</nowiki>
-You can also add link to [[wikipedia:Wiki]] <nowiki>[[wikipedia:Wiki]]</nowiki>.
-Or any other link [[http://google.com|Google]] <nowiki>[[http://google.com|Google]]</nowiki>
+You can write link as [[index]] - <text>[[link]]</text>. Set description [[index|Index page]] - <text>[[index|Index page]]</text>
+You can also add link to [[wikipedia:Wiki]] <text>[[wikipedia:Wiki]]</text>.
+Or any other link [[http://google.com|Google]] <text>[[http://google.com|Google]]</text>
 
 === Code ===
-Add you code as <nowiki>&lt;code>Code this&lt;/code></nowiki>
+Add you code as <text><code>Code this</code></text>
 <code>
 int main(){
 	printf("Hello World!");
@@ -52,3 +55,28 @@ int main(){
 }
 </code>
 
+
+=== Pre format ===
+Add <text><pre>Multiline text</pre></text>
+<pre>
+One line
+Two line
+Three line
+</pre>
+
+=== Text ===
+Show html as text <text><text><title>New title</title>&lt;/text></text>.
+
+=== Nowiki ===
+Use tag <text><nowiki>for insert html code</nowiki></text>.
+
+=== Example ===
+<pre>
+This is title and alt text on link to this page. Add two newlines, to close title.
+
+Body there...
+</pre>
+
+
+== Changes ==
+See docat [[changelog]].

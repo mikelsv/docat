@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Docat - wiki generator</title>
-<meta name='Docat Wiki Generator' ver='0.0.0.1' warning='Do Not Write To This File, All Data Well Be Lost!' md5='eeef39a4dc9cb08cd26ed19b58122882' data='05.12.16 22:02:25' />
+<meta name='Docat Wiki Generator' ver='0.0.0.3' warning='Do Not Write To This File, All Data Well Be Lost!' md5='be6645c053e575611b2f8072a05c65c9' data='06.12.16 02:06:05' />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css.css" />
 </head>
@@ -34,7 +34,7 @@
 
 
 <h1>Docat - wiki generator</h1><hr>
-<table border=0 cellpadding=0 cellspacing=3><tr><td align=center><h3>Contents:</h3></td></tr><tr><td><a href='#How_to_use_it'>1 How to use it</a></td></tr><tr><td><a href='#Configure'>1.1 Configure</a></td></tr><tr><td><a href='#Run'>2 Run</a></td></tr><tr><td><a href='#Source_style'>3 Source style</a></td></tr><tr><td><a href='#H2'>4 H2</a></td></tr><tr><td><a href='#H3'>4.1 H3</a></td></tr><tr><td><a href='#H4'>4.1.1 H4</a></td></tr><tr><td><a href='#H5'>4.1.1.1 H5</a></td></tr><tr><td><a href='#Lists'>4.2 Lists</a></td></tr><tr><td><a href='#Links'>4.3 Links</a></td></tr><tr><td><a href='#Code'>4.4 Code</a></td></tr></table>
+<table border=0 cellpadding=0 cellspacing=3><tr><td align=center><h3>Contents:</h3></td></tr><tr><td><a href='#How_to_use_it'>1 How to use it</a></td></tr><tr><td><a href='#Configure'>1.1 Configure</a></td></tr><tr><td><a href='#Run'>2 Run</a></td></tr><tr><td><a href='#Source_style'>3 Source style</a></td></tr><tr><td><a href='#H2'>4 H2</a></td></tr><tr><td><a href='#H3'>4.1 H3</a></td></tr><tr><td><a href='#H4'>4.1.1 H4</a></td></tr><tr><td><a href='#H5'>4.1.1.1 H5</a></td></tr><tr><td><a href='#Lists'>4.2 Lists</a></td></tr><tr><td><a href='#Links'>4.3 Links</a></td></tr><tr><td><a href='#Code'>4.4 Code</a></td></tr><tr><td><a href='#Pre_format'>4.5 Pre format</a></td></tr><tr><td><a href='#Text'>4.6 Text</a></td></tr><tr><td><a href='#Nowiki'>4.7 Nowiki</a></td></tr><tr><td><a href='#Example'>4.8 Example</a></td></tr><tr><td><a href='#Changes'>5 Changes</a></td></tr></table>
 <h2><span id='How_to_use_it'>How to use it</span></h2><hr>
 <br><h3><span id='Configure'>Configure</span></h3>Create configure file: docat.conf. You may set next options:
 <br>* Src path - source path.
@@ -49,6 +49,9 @@
 <br>* HtmlTitle htmlt.html - Add html code to title for all documents.
 <br>* HtmlBegin htmlb.html - Add html code to begin for all documents.
 <br>* HtmlEnd   htmle.html - Add html code to end for all documents.
+<br>
+<br>* MakeDir on - Enable make directories on copy.
+<br>* Copy scr_file dst_file - Copy scrpath_file to dstpath_file. Multiline.
 <br>
 <br><h2><span id='Run'>Run</span></h2><hr>Run: "docat" in folder with docat.conf or "docat path_to_folder_with_docat.conf". Wait result.
 <br>
@@ -76,7 +79,26 @@ int main(){
 }
 </pre>
 <br>
-<br></div>
+<br>
+<br><h3><span id='Pre_format'>Pre format</span></h3>Add &lt;pre>Multiline text&lt;/pre>
+<br><pre>
+One line
+Two line
+Three line
+</pre>
+<br>
+<br><h3><span id='Text'>Text</span></h3>Show html as text &lt;text>&lt;title>New title&lt;/title>&lt;/text>.
+<br>
+<br><h3><span id='Nowiki'>Nowiki</span></h3>Use tag &lt;nowiki>for insert html code&lt;/nowiki>.
+<br>
+<br><h3><span id='Example'>Example</span></h3><pre>
+This is title and alt text on link to this page. Add two newlines, to close title.
+
+Body there...
+</pre>
+<br>
+<br>
+<br><h2><span id='Changes'>Changes</span></h2><hr>See docat <a href='changelog.html' title='Docat - changelog.'>changelog</a>.</div>
 </section>
 
 
